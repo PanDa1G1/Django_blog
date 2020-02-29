@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+{% load blog_tags %}
+{% load staticfiles %}
+{% block content %}
+    {% for temp in childList %}
+        <div class="btn-group">
+            <button type="button" class="btn btn-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{temp.name}}
+            </button>
+            <div class="dropdown-menu">
+                {% for arts in temp.blog_category.all %}
+                    <a class="dropdown-item" href="{% url 'blog:article_details' temp.slug arts.publish.year arts.publish.month arts.publish.day arts.slug %}">{{arts.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
+
+{% block article %}
+    <br/><h3 align="center">{{post.title}}</h3>
+    <div align="center">
+        {% for tag in post.tags.all %}
+            <a class="badge badge-info" href="{% url 'blog:post_list_by_tag' tag_slug=tag.slug category=category.slug %}">{{tag.name}}</a>
+        {% endfor %}
+    </div>
+    <br/><p>{{post.body|markdown|safe}}</p>
+{% endblock %}
+
+{% block content_ %}
+    </br><h4><strong>目录</strong></h4>
+        <hr>
+        <div>
+            {{ toc|safe }}
+        </div>
+{% endblock %}
+

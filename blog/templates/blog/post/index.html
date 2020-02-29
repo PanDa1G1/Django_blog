@@ -1,0 +1,34 @@
+{% extends "blog/base_index.html" %}
+{% load staticfiles %}
+{% load blog_tags %}
+<!-- 写入 base.html 中定义的 title -->
+{% block title %}
+    首页
+{% endblock title %}
+
+{% block content %}
+
+<!-- 定义放置文章标题的div容器 -->
+<div class="container">
+    <div class="row mt-2">
+
+        {% for art in categories %}
+        <!-- 文章内容 -->
+        <div class="col-4 mb-4">
+        <!-- 卡片容器 -->
+            <div class="card text-center" style="width: 18rem;">
+                <div class="card-header" align = "center">
+
+                </div>
+                <div class = "card-body">
+                    <h2 class="card-title" align = "center">{% url_jump art art.name %}</h2>
+
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+{% endblock content %}

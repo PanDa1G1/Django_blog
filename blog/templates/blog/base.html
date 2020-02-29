@@ -1,0 +1,37 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<!-- 网站主语言 -->
+<html lang="zh-cn">
+
+<head>
+    <!-- 网站采用的字符编码 -->
+    <meta charset="utf-8">
+    <!-- 预留网站标题的位置 -->
+    <title>{% block title %}adasd{% endblock %}</title>
+    <!-- 引入bootstrap的css文件 -->
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <script src="{% static 'jquery/jquery-3.4.1.js' %}"></script>
+    <script src="{% static 'popper/popper-1.14.4.js' %}"></script>
+    <!-- 引入bootstrap的js文件 -->
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'md_css/monokai.css' %}">
+</head>
+
+
+<body>
+    <div id="header" style="background-color:#5B5B5B;color:white;text-align:center;padding:20px;"><h1>Sunsec's Blog</h1></div>
+    <div id="nav" style="line-height:30px;background-color:#eeeeee;height:2000px;width:150px;float:left;padding:5px;">
+        {% block content %}{% endblock content %}
+    </div>
+    <div class="container">
+        <div class="row text-left">
+            <div class="col-lg-9">
+                {% block article %}{% endblock article %}</div>
+            <div class="col-lg-3">{% block content_ %}{% endblock %}</div>
+        </div>
+    </div>
+</body>
+
+
+</html>

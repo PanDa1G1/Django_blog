@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% load staticfiles %}
+{% block content %}
+    {% for temp in childList %}
+        <div class="btn-group">
+            <button type="button" class="btn btn-link dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{temp.name}}
+            </button>
+            <div class="dropdown-menu">
+                {% for arts in temp.blog_category.all %}
+                    <a class="dropdown-item" href="{% url 'blog:article_details' temp.slug arts.publish.year arts.publish.month arts.publish.day arts.slug %}">{{arts.title}}</a>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+{% endblock %}
